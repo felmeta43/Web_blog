@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Doctors — Alliance Hospital</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">✚</span><span class="logo-text">Alliance<strong>Hospital</strong></span></a>
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+          <li><a href="departments.html">Departments</a></li>
+          <li><a href="doctors.html" class="active">Our Doctors</a></li>
+          <li><a href="blog.html">Blog</a></li><li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="appointment.html" class="btn btn-primary nav-cta">Book Appointment</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-eyebrow">Expert Medical Team</span>
+      <h1>Our Specialist Doctors</h1>
+      <p>Meet the team of 40+ highly qualified specialists committed to your health.</p>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container">
+      <!-- Search & Filter -->
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:40px;align-items:center">
+        <input id="doctor-search" type="search" placeholder="Search by name, specialty or department…"
+          style="flex:1;min-width:240px;padding:12px 16px;border:1.5px solid var(--clr-border);border-radius:8px;font-family:inherit;font-size:.9rem" />
+        <select id="dept-filter"
+          style="padding:12px 16px;border:1.5px solid var(--clr-border);border-radius:8px;font-family:inherit;font-size:.9rem;background:#fff">
+          <option value="">All Departments</option>
+        </select>
+        <div style="font-size:.9rem;color:var(--clr-text-muted);white-space:nowrap">
+          Showing <strong id="doctor-count">42</strong> specialists
+        </div>
+      </div>
+
+      <div class="doctors-grid" id="all-doctors">
+        <!-- Populated by main.js -->
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="container cta-inner">
+      <div class="cta-text"><h2>Ready to Book a Consultation?</h2><p>Choose your specialist and schedule an appointment online.</p></div>
+      <a href="appointment.html" class="btn btn-white btn-lg">Book Appointment</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand"><a href="index.html" class="logo logo-light"><span class="logo-icon">✚</span><span class="logo-text">Alliance<strong>Hospital</strong></span></a><p>Committed to excellence in healthcare.</p></div>
+      <div class="footer-links"><h4>Quick Links</h4><ul><li><a href="about.html">About Us</a></li><li><a href="departments.html">Departments</a></li><li><a href="doctors.html">Our Doctors</a></li><li><a href="blog.html">Blog</a></li><li><a href="appointment.html">Book Appointment</a></li></ul></div>
+      <div class="footer-links"><h4>Departments</h4><ul><li><a href="departments.html#cardiology">Cardiology</a></li><li><a href="departments.html#neurology">Neurology</a></li><li><a href="departments.html#orthopedics">Orthopedics</a></li><li><a href="departments.html#pediatrics">Pediatrics</a></li><li><a href="departments.html#oncology">Oncology</a></li></ul></div>
+      <div class="footer-contact"><h4>Contact Us</h4><p>📍 123 Health Avenue, Addis Ababa</p><p>📞 <a href="tel:+251111234567">+251 111 234 567</a></p></div>
+    </div>
+    <div class="footer-bottom"><div class="container"><p>&copy; 2026 Alliance Hospital.</p><p><a href="#">Privacy Policy</a></p></div></div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

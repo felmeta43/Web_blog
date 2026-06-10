@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Alliance Hospital</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">✚</span><span class="logo-text">Alliance<strong>Hospital</strong></span></a>
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+          <li><a href="departments.html">Departments</a></li><li><a href="doctors.html">Our Doctors</a></li>
+          <li><a href="blog.html">Blog</a></li><li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="appointment.html" class="btn btn-primary nav-cta">Book Appointment</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-eyebrow">Get in Touch</span>
+      <h1>Contact Alliance Hospital</h1>
+      <p>We're here to help. Reach out to us by phone, email, or visit us in person.</p>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Left: contact details + map -->
+        <div>
+          <div class="section-eyebrow" style="margin-bottom:16px">Our Location</div>
+          <h2 style="font-family:var(--font-display);font-size:1.8rem;margin-bottom:28px">Find &amp; Reach <em>Alliance Hospital</em></h2>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px">
+            <div class="contact-info-card">
+              <h4>📍 Address</h4>
+              <p>123 Health Avenue<br/>Medical District<br/>Addis Ababa, Ethiopia</p>
+            </div>
+            <div class="contact-info-card">
+              <h4>🕐 Hours</h4>
+              <p>Emergency: 24/7<br/>OPD: Mon–Sat<br/>8:00 AM – 6:00 PM</p>
+            </div>
+            <div class="contact-info-card">
+              <h4>📞 Phone</h4>
+              <p><a href="tel:+251111234567" style="color:var(--clr-primary)">+251 111 234 567</a><br/><small style="color:var(--clr-text-muted)">Emergency line (24/7)</small></p>
+            </div>
+            <div class="contact-info-card">
+              <h4>✉️ Email</h4>
+              <p><a href="mailto:info@alliancehospital.et" style="color:var(--clr-primary)">info@alliancehospital.et</a></p>
+            </div>
+          </div>
+
+          <div class="map-placeholder">🗺️</div>
+        </div>
+
+        <!-- Right: contact form -->
+        <div class="contact-form-wrap">
+          <h3>Send Us a Message</h3>
+          <form id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="c-name">Full Name *</label>
+                <input type="text" id="c-name" required placeholder="Your full name" />
+              </div>
+              <div class="form-group">
+                <label for="c-phone">Phone Number</label>
+                <input type="tel" id="c-phone" placeholder="+251 9XX XXX XXXX" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="c-email">Email Address *</label>
+              <input type="email" id="c-email" required placeholder="you@example.com" />
+            </div>
+            <div class="form-group">
+              <label for="c-subject">Subject *</label>
+              <select id="c-subject" required>
+                <option value="">Select a subject…</option>
+                <option>General Enquiry</option>
+                <option>Appointment Request</option>
+                <option>Medical Records</option>
+                <option>Billing &amp; Insurance</option>
+                <option>Feedback / Complaint</option>
+                <option>Media &amp; Press</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="c-message">Message *</label>
+              <textarea id="c-message" required placeholder="How can we help you?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:16px">Send Message</button>
+            <div class="success-message" id="contact-success">
+              ✓ Message received! We'll get back to you within 1 business day.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick contacts strip -->
+  <section class="section-pad bg-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Direct Lines</span>
+        <h2>Reach the Right <em>Department</em></h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card"><div class="value-icon">🚨</div><h4>Emergency</h4><p>24/7 emergency line<br/><strong>+251 111 234 567</strong></p></div>
+        <div class="value-card"><div class="value-icon">📅</div><h4>Appointments</h4><p>OPD scheduling<br/><strong>+251 111 234 568</strong></p></div>
+        <div class="value-card"><div class="value-icon">🔬</div><h4>Laboratory</h4><p>Test results &amp; reports<br/><strong>+251 111 234 569</strong></p></div>
+        <div class="value-card"><div class="value-icon">💳</div><h4>Billing</h4><p>Insurance &amp; payments<br/><strong>+251 111 234 570</strong></p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand"><a href="index.html" class="logo logo-light"><span class="logo-icon">✚</span><span class="logo-text">Alliance<strong>Hospital</strong></span></a><p>Committed to excellence in healthcare.</p></div>
+      <div class="footer-links"><h4>Quick Links</h4><ul><li><a href="about.html">About Us</a></li><li><a href="departments.html">Departments</a></li><li><a href="doctors.html">Our Doctors</a></li><li><a href="blog.html">Blog</a></li><li><a href="appointment.html">Book Appointment</a></li></ul></div>
+      <div class="footer-links"><h4>Departments</h4><ul><li><a href="departments.html#cardiology">Cardiology</a></li><li><a href="departments.html#neurology">Neurology</a></li><li><a href="departments.html#orthopedics">Orthopedics</a></li><li><a href="departments.html#pediatrics">Pediatrics</a></li></ul></div>
+      <div class="footer-contact"><h4>Contact Us</h4><p>📍 123 Health Avenue, Addis Ababa</p><p>📞 <a href="tel:+251111234567">+251 111 234 567</a></p><p>✉️ <a href="mailto:info@alliancehospital.et">info@alliancehospital.et</a></p></div>
+    </div>
+    <div class="footer-bottom"><div class="container"><p>&copy; 2026 Alliance Hospital. All rights reserved.</p><p><a href="#">Privacy Policy</a> · <a href="#">Terms of Use</a></p></div></div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alliance Hospital — Excellence in Healthcare</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">✚</span>
+        <span class="logo-text">Alliance<strong>Hospital</strong></span>
+      </a>
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="departments.html">Departments</a></li>
+          <li><a href="doctors.html">Our Doctors</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="appointment.html" class="btn btn-primary nav-cta">Book Appointment</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <span class="hero-badge">Trusted Since 2005</span>
+      <h1>Your Health Is Our<br /><em>Top Priority</em></h1>
+      <p class="hero-sub">Alliance Hospital is home to <strong>40+ specialist doctors</strong> dedicated to delivering world-class medical care with compassion and precision.</p>
+      <div class="hero-actions">
+        <a href="appointment.html" class="btn btn-primary btn-lg">Book an Appointment</a>
+        <a href="about.html" class="btn btn-outline btn-lg">Learn More</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">40+</span><span class="stat-label">Specialist Doctors</span></div>
+        <div class="stat"><span class="stat-num">15+</span><span class="stat-label">Departments</span></div>
+        <div class="stat"><span class="stat-num">50k+</span><span class="stat-label">Patients Served</span></div>
+        <div class="stat"><span class="stat-num">24/7</span><span class="stat-label">Emergency Care</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES STRIP ===== -->
+  <section class="services-strip">
+    <div class="container services-grid">
+      <div class="service-card">
+        <div class="service-icon">🏥</div>
+        <h3>Emergency Care</h3>
+        <p>Round-the-clock emergency services with rapid-response teams.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔬</div>
+        <h3>Advanced Diagnostics</h3>
+        <p>State-of-the-art imaging, laboratory &amp; pathology services.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🫀</div>
+        <h3>Cardiology</h3>
+        <p>Comprehensive heart care from prevention to complex surgery.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧠</div>
+        <h3>Neurology</h3>
+        <p>Expert neurological assessment, treatment &amp; rehabilitation.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">👶</div>
+        <h3>Pediatrics</h3>
+        <p>Gentle, specialised care for infants, children &amp; adolescents.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🦷</div>
+        <h3>Dental &amp; Oral</h3>
+        <p>Complete dental services from routine checkups to oral surgery.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT SNIPPET ===== -->
+  <section class="about-section section-pad">
+    <div class="container about-grid">
+      <div class="about-image-wrap">
+        <div class="about-image-placeholder">
+          <span class="big-icon">🏨</span>
+          <p>Alliance Hospital</p>
+        </div>
+        <div class="about-badge-float">
+          <span class="badge-num">40+</span>
+          <span class="badge-text">Specialist<br/>Doctors</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <span class="section-eyebrow">About Alliance Hospital</span>
+        <h2>A Legacy of <em>Healing &amp; Excellence</em></h2>
+        <p>Founded with a bold vision, Alliance Hospital has grown into one of the region's most trusted medical institutions. Our team of <strong>more than 40 specialist physicians</strong> spans every major discipline, united by a single mission — to provide every patient with the highest standard of care.</p>
+        <p>We invest in cutting-edge technology, continuous staff training, and patient-centred processes so that when you walk through our doors, you receive treatment that is both scientifically advanced and deeply humane.</p>
+        <ul class="check-list">
+          <li>JCI-accredited facility &amp; internationally trained staff</li>
+          <li>Fully equipped ICU, NICU &amp; surgical suites</li>
+          <li>Multilingual patient support team</li>
+          <li>Transparent, affordable pricing with insurance support</li>
+        </ul>
+        <a href="about.html" class="btn btn-primary">Discover Our Story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED DOCTORS ===== -->
+  <section class="doctors-section section-pad bg-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Meet the Team</span>
+        <h2>Our <em>Specialist Doctors</em></h2>
+        <p>Over 40 highly qualified specialists covering every facet of medicine.</p>
+      </div>
+      <div class="doctors-grid" id="featured-doctors">
+        <!-- Populated by doctors.js -->
+      </div>
+      <div class="section-footer-cta">
+        <a href="doctors.html" class="btn btn-primary">View All 40+ Doctors</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LATEST BLOG POSTS ===== -->
+  <section class="blog-section section-pad">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Health Insights</span>
+        <h2>Latest from the <em>Blog</em></h2>
+        <p>Expert advice, health tips &amp; hospital news from our specialist team.</p>
+      </div>
+      <div class="blog-grid" id="featured-posts">
+        <!-- Populated by blog.js -->
+      </div>
+      <div class="section-footer-cta">
+        <a href="blog.html" class="btn btn-outline">Read All Articles</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="testimonials-section section-pad bg-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Patient Stories</span>
+        <h2>What Our <em>Patients Say</em></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p>"The cardiology team at Alliance Hospital saved my life. The care I received was extraordinary — professional, compassionate, and incredibly thorough."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">S</div>
+            <div><strong>Samuel K.</strong><br/><small>Cardiac Patient</small></div>
+          </div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="testimonial-card">
+          <p>"From the moment I walked in, every staff member made me feel at ease. The diagnostic process was fast, precise, and the doctors explained everything clearly."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">A</div>
+            <div><strong>Amina T.</strong><br/><small>Neurology Patient</small></div>
+          </div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="testimonial-card">
+          <p>"Brought my daughter here for a complex surgery. The pediatric team was outstanding — gentle, skilled, and kept us informed every step of the way."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">M</div>
+            <div><strong>Meron B.</strong><br/><small>Parent of Pediatric Patient</small></div>
+          </div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA BANNER ===== -->
+  <section class="cta-banner">
+    <div class="container cta-inner">
+      <div class="cta-text">
+        <h2>Ready to Take Charge of Your Health?</h2>
+        <p>Book a consultation with one of our 40+ specialist doctors today.</p>
+      </div>
+      <a href="appointment.html" class="btn btn-white btn-lg">Schedule an Appointment</a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo logo-light">
+          <span class="logo-icon">✚</span>
+          <span class="logo-text">Alliance<strong>Hospital</strong></span>
+        </a>
+        <p>Committed to excellence in healthcare. Serving our community with 40+ specialist doctors across 15+ departments.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Twitter">t</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Instagram">ig</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="departments.html">Departments</a></li>
+          <li><a href="doctors.html">Our Doctors</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="appointment.html">Book Appointment</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Departments</h4>
+        <ul>
+          <li><a href="departments.html#cardiology">Cardiology</a></li>
+          <li><a href="departments.html#neurology">Neurology</a></li>
+          <li><a href="departments.html#orthopedics">Orthopedics</a></li>
+          <li><a href="departments.html#pediatrics">Pediatrics</a></li>
+          <li><a href="departments.html#oncology">Oncology</a></li>
+          <li><a href="departments.html#emergency">Emergency</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p>📍 123 Health Avenue, Medical District<br/>Addis Ababa, Ethiopia</p>
+        <p>📞 <a href="tel:+251111234567">+251 111 234 567</a></p>
+        <p>✉️ <a href="mailto:info@alliancehospital.et">info@alliancehospital.et</a></p>
+        <p>🕐 Emergency: 24/7<br/>OPD: Mon–Sat, 8am–6pm</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Alliance Hospital. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> · <a href="#">Terms of Use</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
