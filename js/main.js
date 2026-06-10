@@ -22,14 +22,14 @@ if (hamburger && mainNav) {
   });
 }
 
-// Render featured doctors (home page — first 8)
-const featuredDoctorsEl = document.getElementById('featured-doctors');
-if (featuredDoctorsEl && typeof DOCTORS !== 'undefined') {
-  const featured = DOCTORS.slice(0, 8);
-  featuredDoctorsEl.innerHTML = featured.map(d => `
+// Shared doctor card builder (photo-style avatar)
+function doctorCardHTML(d) {
+  const gradient = typeof deptGradient === 'function' ? deptGradient(d.dept) : 'linear-gradient(135deg,#0057a8,#003f7a)';
+  const initials  = typeof getInitials === 'function' ? getInitials(d.name) : d.name.slice(0,2).toUpperCase();
+  return `
     <div class="doctor-card">
-      <div class="doctor-avatar">
-        ${d.icon}
+      <div class="doctor-photo-area" style="background:${gradient}">
+        <div class="doctor-initials">${initials}</div>
         <span class="doctor-dept-tag">${d.dept}</span>
       </div>
       <div class="doctor-info">
@@ -38,28 +38,38 @@ if (featuredDoctorsEl && typeof DOCTORS !== 'undefined') {
         <p class="qual">${d.qual}</p>
         <p class="exp">${d.exp} experience</p>
       </div>
-    </div>
-  `).join('');
+    </div>`;
+}
+
+// Shared staff card builder (pharmacy / lab)
+function staffCardHTML(s, bgGrad) {
+  const initials = typeof getInitials === 'function' ? getInitials(s.name) : s.name.slice(0,2).toUpperCase();
+  return `
+    <div class="staff-card">
+      <div class="staff-photo" style="background:${bgGrad}">
+        <div class="staff-initials">${initials}</div>
+        <span class="staff-role-tag">${s.title}</span>
+      </div>
+      <div class="staff-info">
+        <h4>${s.name}</h4>
+        <p class="staff-title">${s.title}</p>
+        <p class="staff-qual">${s.qual}</p>
+        <p class="staff-exp">${s.exp} experience</p>
+      </div>
+    </div>`;
+}
+
+// Render featured doctors (home page — first 8)
+const featuredDoctorsEl = document.getElementById('featured-doctors');
+if (featuredDoctorsEl && typeof DOCTORS !== 'undefined') {
+  featuredDoctorsEl.innerHTML = DOCTORS.slice(0, 8).map(doctorCardHTML).join('');
 }
 
 // Render all doctors (doctors page)
 const allDoctorsEl = document.getElementById('all-doctors');
 if (allDoctorsEl && typeof DOCTORS !== 'undefined') {
   function renderDoctors(list) {
-    allDoctorsEl.innerHTML = list.map(d => `
-      <div class="doctor-card">
-        <div class="doctor-avatar">
-          ${d.icon}
-          <span class="doctor-dept-tag">${d.dept}</span>
-        </div>
-        <div class="doctor-info">
-          <h4>${d.name}</h4>
-          <p class="specialty">${d.specialty}</p>
-          <p class="qual">${d.qual}</p>
-          <p class="exp">${d.exp} experience</p>
-        </div>
-      </div>
-    `).join('');
+    allDoctorsEl.innerHTML = list.map(doctorCardHTML).join('');
   }
 
   renderDoctors(DOCTORS);
@@ -263,4 +273,74 @@ if (contactForm) {
       msg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   });
+}
+
+// ===== FACILITIES PAGE =====
+
+// Featured specialists section (facilities page — 12 highlighted doctors)
+const featuredSpecialistsEl = document.getElementById('featured-specialists');
+if (featuredSpecialistsEl && typeof DOCTORS !== 'undefined') {
+  const picks = [0,3,5,8,9,15,18,21,25,28,33,38].map(i => DOCTORS[i]).filter(Boolean);
+  featuredSpecialistsEl.innerHTML = picks.map(doctorCardHTML).join('');
+}
+
+// Pharmacy staff
+const pharmacyStaffEl = document.getElementById('pharmacy-staff');
+if (pharmacyStaffEl && typeof PHARMACISTS !== 'undefined') {
+  const PHARM_GRADS = [
+    'linear-gradient(135deg,#1a6e4a,#0d4f3c)',
+    'linear-gradient(135deg,#2c6e1a,#1a4f0d)',
+    'linear-gradient(135deg,#1a4e6e,#0d3450)',
+    'linear-gradient(135deg,#1a3d6e,#0d2a50)',
+    'linear-gradient(135deg,#4a6e1a,#304f0d)',
+    'linear-gradient(135deg,#1a6e6e,#0d4f4f)',
+  ];
+  pharmacyStaffEl.innerHTML = PHARMACISTS.map((s,i) => staffCardHTML(s, PHARM_GRADS[i % PHARM_GRADS.length])).join('');
+}
+
+// Laboratory staff
+const labStaffEl = document.getElementById('lab-staff');
+if (labStaffEl && typeof LAB_STAFF !== 'undefined') {
+  const LAB_GRADS = [
+    'linear-gradient(135deg,#5a1f6e,#3d0f52)',
+    'linear-gradient(135deg,#6e1f1f,#521212)',
+    'linear-gradient(135deg,#1f3a6e,#122352)',
+    'linear-gradient(135deg,#6e4a1f,#52300d)',
+    'linear-gradient(135deg,#1f6e4a,#0d4f30)',
+    'linear-gradient(135deg,#3a1f6e,#220f52)',
+    'linear-gradient(135deg,#6e1f5a,#52103e)',
+    'linear-gradient(135deg,#1f4a6e,#0d2e52)',
+  ];
+  labStaffEl.innerHTML = LAB_STAFF.map((s,i) => staffCardHTML(s, LAB_GRADS[i % LAB_GRADS.length])).join('');
+}
+
+// Medical equipment
+const equipmentGridEl = document.getElementById('equipment-grid');
+if (equipmentGridEl && typeof EQUIPMENT !== 'undefined') {
+  equipmentGridEl.innerHTML = EQUIPMENT.map(eq => `
+    <div class="equipment-card">
+      <div class="equipment-img" style="background:linear-gradient(135deg,${eq.color1},${eq.color2})">
+        <div class="equipment-pattern"></div>
+        <div class="equipment-stat-bubble">
+          <span class="stat-bubble-num">${eq.stat}</span>
+          <span class="stat-bubble-label">${eq.statLabel}</span>
+        </div>
+        <div class="equipment-icon-wrap">
+          <span class="equipment-icon">${eq.icon}</span>
+        </div>
+        <div class="equipment-tagline">${eq.tagline}</div>
+      </div>
+      <div class="equipment-body">
+        <h3>${eq.name}</h3>
+        <p>${eq.description}</p>
+        <div class="equipment-features">
+          ${eq.features.map(f => `<span class="feat-tag">${f}</span>`).join('')}
+        </div>
+        <div class="equipment-uses">
+          <h4>Common Uses</h4>
+          <ul>${eq.uses.map(u => `<li>${u}</li>`).join('')}</ul>
+        </div>
+      </div>
+    </div>
+  `).join('');
 }

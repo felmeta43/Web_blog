@@ -112,6 +112,114 @@ const DEPARTMENTS = [
   { id: "dental",           name: "Dental & Oral",      icon: "🦷", desc: "Complete dental services from routine checkups and orthodontics to oral surgery.", doctors: 2 },
 ];
 
+// Department color palette (gradient pairs)
+const DEPT_COLORS = {
+  "Cardiology":       ["#c0392b","#922b21"],
+  "Neurology":        ["#2471a3","#1a5276"],
+  "Orthopedics":      ["#1e8449","#145a32"],
+  "Pediatrics":       ["#d68910","#b7770d"],
+  "Oncology":         ["#7d3c98","#6c3483"],
+  "OB/GYN":           ["#cb4335","#a93226"],
+  "Gastroenterology": ["#117864","#0e6655"],
+  "Pulmonology":      ["#2e86c1","#1a5276"],
+  "Ophthalmology":    ["#117a65","#0e6655"],
+  "ENT":              ["#d35400","#ba4a00"],
+  "Dermatology":      ["#e67e22","#ca6f1e"],
+  "Endocrinology":    ["#1abc9c","#17a589"],
+  "Nephrology":       ["#2980b9","#2471a3"],
+  "Urology":          ["#27ae60","#1e8449"],
+  "Psychiatry":       ["#8e44ad","#7d3c98"],
+  "Rheumatology":     ["#c0392b","#a93226"],
+  "General Surgery":  ["#2c3e50","#1a252f"],
+  "Emergency":        ["#e74c3c","#cb4335"],
+  "Anesthesiology":   ["#34495e","#2c3e50"],
+  "Radiology":        ["#16a085","#138d75"],
+  "Dental":           ["#2980b9","#1c6ea4"],
+  "Rehabilitation":   ["#27ae60","#219653"],
+  "Hematology":       ["#c0392b","#96281b"],
+  "Internal Medicine":["#2c3e50","#1c2833"],
+  "Surgery":          ["#2c3e50","#273746"],
+};
+
+function deptGradient(dept) {
+  const c = DEPT_COLORS[dept] || ["#0057a8","#003f7a"];
+  return `linear-gradient(135deg, ${c[0]}, ${c[1]})`;
+}
+
+function getInitials(name) {
+  return name.replace(/^(Dr\.|Mr\.|Ms\.|Sr\.|Pharm\.)?\s*/,'').split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+}
+
+// ===== PHARMACY STAFF =====
+const PHARMACISTS = [
+  { name: "Pharm. Eyerusalem Haile",  title: "Chief Pharmacist",        qual: "BPharm, MSc Clinical Pharmacy",      exp: "14 years", gender: "f" },
+  { name: "Pharm. Kibrom Tesfaye",    title: "Clinical Pharmacist",      qual: "BPharm, Cert. Oncology Pharmacy",    exp: "9 years",  gender: "m" },
+  { name: "Pharm. Mekdes Wolde",      title: "Inpatient Pharmacist",     qual: "BPharm, MSc Pharmacotherapy",        exp: "7 years",  gender: "f" },
+  { name: "Pharm. Natnael Girma",     title: "Outpatient Pharmacist",    qual: "BPharm, Dipl. Hospital Pharmacy",    exp: "5 years",  gender: "m" },
+  { name: "Pharm. Selam Desta",       title: "Clinical Drug Counsellor", qual: "BPharm, Cert. Patient Counselling",  exp: "6 years",  gender: "f" },
+  { name: "Pharm. Biniam Mengesha",   title: "Compounding Pharmacist",   qual: "BPharm, Cert. Sterile Compounding",  exp: "8 years",  gender: "m" },
+];
+
+// ===== LABORATORY STAFF =====
+const LAB_STAFF = [
+  { name: "Mr. Bereket Alemu",    title: "Chief Laboratory Scientist",     qual: "BSc MLT, MSc Clinical Biochemistry", exp: "16 years", gender: "m" },
+  { name: "Ms. Tigist Bekele",    title: "Haematology Specialist",          qual: "BSc MLT, Cert. Haematology",         exp: "11 years", gender: "f" },
+  { name: "Mr. Dawit Mengistu",   title: "Microbiology Technologist",       qual: "BSc Microbiology, MSc Bacteriology", exp: "9 years",  gender: "m" },
+  { name: "Ms. Hana Tesfaye",     title: "Histopathology Technician",       qual: "BSc MLT, FIBMS",                     exp: "8 years",  gender: "f" },
+  { name: "Mr. Yohannes Kassa",   title: "Biochemistry Analyst",            qual: "BSc Clinical Chemistry",             exp: "6 years",  gender: "m" },
+  { name: "Ms. Selam Girma",      title: "Immunology Technologist",         qual: "BSc MLT, Cert. Immunology",          exp: "7 years",  gender: "f" },
+  { name: "Mr. Abel Teferi",      title: "Blood Bank Supervisor",           qual: "BSc MLT, Cert. Transfusion Medicine", exp: "10 years", gender: "m" },
+  { name: "Ms. Meron Hailu",      title: "Cytology & Pathology Technician", qual: "BSc MLT, Dipl. Cytopathology",       exp: "9 years",  gender: "f" },
+];
+
+// ===== MEDICAL EQUIPMENT =====
+const EQUIPMENT = [
+  {
+    id: "xray",
+    name: "Digital X-Ray",
+    tagline: "Fast · Precise · Low-Dose",
+    icon: "🩻",
+    color1: "#1e3a5f", color2: "#4a90d9",
+    description: "Our flat-panel digital radiography system delivers instant, high-resolution images with up to 70% less radiation than conventional film X-ray. Images are available within seconds for rapid clinical decision-making.",
+    features: ["Instant digital images", "70% lower radiation vs. film", "AI-assisted anomaly detection", "Full-body & targeted views", "Same-day radiology report"],
+    uses: ["Chest infections & pneumonia", "Bone fractures & dislocations", "Spinal alignment assessment", "Pre-operative screening", "Foreign body detection"],
+    stat: "< 30 sec", statLabel: "Image Ready",
+  },
+  {
+    id: "ultrasound",
+    name: "Ultrasound Imaging",
+    tagline: "Real-Time · Safe · Versatile",
+    icon: "📡",
+    color1: "#0d4f3c", color2: "#00a878",
+    description: "High-definition ultrasound for abdominal, pelvic, obstetric, vascular, and musculoskeletal imaging. Portable units enable point-of-care scanning at the bedside in ICU and emergency settings.",
+    features: ["4D obstetric imaging", "Doppler blood-flow studies", "Bedside & portable units", "Ultrasound-guided procedures", "Completely radiation-free"],
+    uses: ["Pregnancy monitoring (4D)", "Abdominal organ assessment", "Cardiac echo studies", "Vascular & DVT screening", "Guided biopsies & drains"],
+    stat: "100%", statLabel: "Radiation-Free",
+  },
+  {
+    id: "endoscopy",
+    name: "Endoscopy Suite",
+    tagline: "See Inside · Treat Precisely",
+    icon: "🔭",
+    color1: "#3d1a6e", color2: "#9b59b6",
+    description: "State-of-the-art HD video endoscopy covering the full gastrointestinal tract. Our purpose-built suite handles both diagnostic and therapeutic procedures under conscious sedation for patient comfort.",
+    features: ["HD video gastroscopy", "Colonoscopy & sigmoidoscopy", "ERCP & biliary procedures", "Polypectomy & biopsy", "Capsule endoscopy"],
+    uses: ["Stomach ulcer diagnosis", "Colon cancer screening", "GERD & reflux evaluation", "GI bleeding investigation", "Foreign body removal"],
+    stat: "HD", statLabel: "Video Quality",
+  },
+  {
+    id: "ct",
+    name: "128-Slice CT Scanner",
+    tagline: "Sub-Second · High-Detail · 3D",
+    icon: "⭕",
+    color1: "#5a2d00", color2: "#e67e22",
+    description: "Our 128-slice multi-detector CT scanner captures extraordinary anatomical detail in sub-second scan times. Advanced post-processing software enables full 3D reconstruction, virtual endoscopy, and cardiac CT angiography.",
+    features: ["128-slice multi-detector", "Cardiac CT angiography", "Low-dose radiation protocols", "3D & virtual reconstruction", "24/7 emergency access"],
+    uses: ["Stroke & traumatic brain injury", "Pulmonary embolism", "Abdominal & chest trauma", "Cancer staging & follow-up", "Coronary artery assessment"],
+    stat: "128", statLabel: "Slice Detector",
+  },
+];
+
 const BLOG_POSTS = [
   {
     id: 1,

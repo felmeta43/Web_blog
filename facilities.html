@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Facilities &amp; Staff — Alliance Hospital</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">✚</span>
+        <span class="logo-text">Alliance<strong>Hospital</strong></span>
+      </a>
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="departments.html">Departments</a></li>
+          <li><a href="facilities.html" class="active">Facilities</a></li>
+          <li><a href="doctors.html">Our Doctors</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="appointment.html" class="btn btn-primary nav-cta">Book Appointment</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-eyebrow">World-Class Infrastructure</span>
+      <h1>Facilities &amp; Our Team</h1>
+      <p>Meet our specialists, pharmacists, and lab scientists — and explore the advanced equipment that powers their work.</p>
+    </div>
+  </section>
+
+  <!-- ===== JUMP LINKS ===== -->
+  <div style="background:#fff;border-bottom:1px solid var(--clr-border);position:sticky;top:72px;z-index:90">
+    <div class="container" style="display:flex;gap:0;overflow-x:auto">
+      <a href="#specialists" style="padding:16px 22px;font-size:.85rem;font-weight:600;color:var(--clr-text-muted);white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s">
+        👨‍⚕️ Specialists
+      </a>
+      <a href="#pharmacy" style="padding:16px 22px;font-size:.85rem;font-weight:600;color:var(--clr-text-muted);white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s">
+        💊 Pharmacy
+      </a>
+      <a href="#laboratory" style="padding:16px 22px;font-size:.85rem;font-weight:600;color:var(--clr-text-muted);white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s">
+        🔬 Laboratory
+      </a>
+      <a href="#equipment" style="padding:16px 22px;font-size:.85rem;font-weight:600;color:var(--clr-text-muted);white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s">
+        🩻 Equipment
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 1: SPECIALISTS ===== -->
+  <section class="section-pad" id="specialists">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Medical Team</span>
+        <h2>Meet Our <em>Specialist Doctors</em></h2>
+        <p>Alliance Hospital is founded with more than 40 specialist physicians spanning every major medical discipline.</p>
+      </div>
+
+      <!-- Stats row -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:52px">
+        <div style="background:var(--clr-primary);color:#fff;border-radius:var(--radius);padding:24px;text-align:center">
+          <div style="font-size:2.4rem;font-weight:700;font-family:var(--font-display)">40+</div>
+          <div style="font-size:.8rem;opacity:.85;text-transform:uppercase;letter-spacing:.06em">Specialists</div>
+        </div>
+        <div style="background:var(--clr-accent);color:#fff;border-radius:var(--radius);padding:24px;text-align:center">
+          <div style="font-size:2.4rem;font-weight:700;font-family:var(--font-display)">15+</div>
+          <div style="font-size:.8rem;opacity:.85;text-transform:uppercase;letter-spacing:.06em">Departments</div>
+        </div>
+        <div style="background:#8e44ad;color:#fff;border-radius:var(--radius);padding:24px;text-align:center">
+          <div style="font-size:2.4rem;font-weight:700;font-family:var(--font-display)">200+</div>
+          <div style="font-size:.8rem;opacity:.85;text-transform:uppercase;letter-spacing:.06em">Years Combined</div>
+        </div>
+        <div style="background:#d35400;color:#fff;border-radius:var(--radius);padding:24px;text-align:center">
+          <div style="font-size:2.4rem;font-weight:700;font-family:var(--font-display)">24/7</div>
+          <div style="font-size:.8rem;opacity:.85;text-transform:uppercase;letter-spacing:.06em">On-call Coverage</div>
+        </div>
+      </div>
+
+      <!-- Featured specialist grid (JS-rendered) -->
+      <div class="doctors-grid" id="featured-specialists"></div>
+
+      <div class="section-footer-cta">
+        <a href="doctors.html" class="btn btn-primary">View All 40+ Specialists</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 2: PHARMACY ===== -->
+  <section class="section-pad bg-light" id="pharmacy">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Pharmacy Services</span>
+        <h2>Our <em>Pharmacy &amp; Pharmacists</em></h2>
+        <p>A fully stocked, 24-hour pharmacy led by clinical pharmacists who collaborate directly with the medical team for safe, effective medication management.</p>
+      </div>
+
+      <!-- Intro card -->
+      <div class="facility-intro">
+        <div class="facility-intro-icon" style="background:linear-gradient(135deg,#1a6e4a,#0d4f3c);color:#fff">💊</div>
+        <div>
+          <h3>Alliance Hospital Pharmacy</h3>
+          <p>Our pharmacy stocks more than 2,000 medicines and provides clinical drug review, patient counselling, and sterile compounding services. Every prescription is checked by a licensed pharmacist before dispensing.</p>
+          <div class="facility-meta">
+            <div class="facility-meta-item"><strong>2,000+</strong><span>Medicines Stocked</span></div>
+            <div class="facility-meta-item"><strong>24/7</strong><span>Opening Hours</span></div>
+            <div class="facility-meta-item"><strong>6</strong><span>Clinical Pharmacists</span></div>
+            <div class="facility-meta-item"><strong>0</strong><span>Dispensing Errors Goal</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services list -->
+      <div class="values-grid" style="margin-bottom:52px">
+        <div class="value-card">
+          <div class="value-icon">💊</div>
+          <h4>Inpatient Dispensing</h4>
+          <p>Unit-dose dispensing for all wards with pharmacist-led medication reconciliation on admission and discharge.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🧑‍🏫</div>
+          <h4>Patient Counselling</h4>
+          <p>Dedicated drug information and counselling service helping patients understand their medications and manage side effects.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🧪</div>
+          <h4>Sterile Compounding</h4>
+          <p>ISO-certified cleanroom for preparing IV admixtures, chemotherapy infusions, and paediatric formulations.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">📋</div>
+          <h4>Medication Review</h4>
+          <p>Clinical pharmacists conduct daily ward rounds and review all complex prescriptions for interactions and dosing.</p>
+        </div>
+      </div>
+
+      <!-- Pharmacist staff grid (JS-rendered) -->
+      <h3 style="font-family:var(--font-display);font-size:1.4rem;margin-bottom:28px;text-align:center">Meet Our <em>Pharmacists</em></h3>
+      <div class="staff-grid" id="pharmacy-staff"></div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 3: LABORATORY ===== -->
+  <section class="section-pad" id="laboratory">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Diagnostic Laboratory</span>
+        <h2>Laboratory &amp; <em>Lab Technicians</em></h2>
+        <p>NABL-accredited laboratory delivering rapid, accurate results across haematology, biochemistry, microbiology, histopathology, and more.</p>
+      </div>
+
+      <!-- Intro card -->
+      <div class="facility-intro">
+        <div class="facility-intro-icon" style="background:linear-gradient(135deg,#5a1f6e,#3d0f52);color:#fff">🔬</div>
+        <div>
+          <h3>Alliance Hospital Laboratory</h3>
+          <p>Our fully automated laboratory processes over 1,000 samples daily across 8 specialised sections. Routine results are available within 2–4 hours; emergency results within 60 minutes.</p>
+          <div class="facility-meta">
+            <div class="facility-meta-item"><strong>500+</strong><span>Tests Available</span></div>
+            <div class="facility-meta-item"><strong>1,000+</strong><span>Samples / Day</span></div>
+            <div class="facility-meta-item"><strong>8</strong><span>Specialist Scientists</span></div>
+            <div class="facility-meta-item"><strong>NABL</strong><span>Accredited</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lab sections list -->
+      <div class="dept-grid" style="margin-bottom:52px">
+        <div class="dept-card">
+          <div class="dept-icon">🩸</div>
+          <h3>Haematology</h3>
+          <p>Full blood count, coagulation studies, peripheral blood films, and bone marrow aspirate analysis.</p>
+          <span class="doctor-count">Automated 5-part differential analyser</span>
+        </div>
+        <div class="dept-card">
+          <div class="dept-icon">🧫</div>
+          <h3>Microbiology</h3>
+          <p>Bacterial, fungal, and mycobacterial cultures with antibiotic sensitivity testing. PCR-based pathogen detection.</p>
+          <span class="doctor-count">MALDI-TOF rapid identification</span>
+        </div>
+        <div class="dept-card">
+          <div class="dept-icon">⚗️</div>
+          <h3>Clinical Biochemistry</h3>
+          <p>Liver, kidney, lipid, thyroid, cardiac enzyme, and endocrine panels on fully automated analysers.</p>
+          <span class="doctor-count">Cobas 8000 platform</span>
+        </div>
+        <div class="dept-card">
+          <div class="dept-icon">🦠</div>
+          <h3>Histopathology</h3>
+          <p>Biopsy processing, special staining, immunohistochemistry, and intra-operative frozen sections.</p>
+          <span class="doctor-count">Digital slide scanning available</span>
+        </div>
+        <div class="dept-card">
+          <div class="dept-icon">🧬</div>
+          <h3>Molecular Diagnostics</h3>
+          <p>PCR testing for infectious diseases, HIV viral load, hepatitis quantification, and tumour markers.</p>
+          <span class="doctor-count">Real-time PCR platform</span>
+        </div>
+        <div class="dept-card">
+          <div class="dept-icon">🩹</div>
+          <h3>Blood Bank</h3>
+          <p>24-hour blood bank with full compatibility testing, component therapy, and apheresis services.</p>
+          <span class="doctor-count">ISO-certified transfusion service</span>
+        </div>
+      </div>
+
+      <!-- Lab technician grid (JS-rendered) -->
+      <h3 style="font-family:var(--font-display);font-size:1.4rem;margin-bottom:28px;text-align:center">Meet Our <em>Laboratory Scientists</em></h3>
+      <div class="staff-grid" id="lab-staff"></div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 4: MEDICAL EQUIPMENT ===== -->
+  <section class="section-pad bg-light" id="equipment">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Diagnostic Imaging &amp; Procedures</span>
+        <h2>Advanced Medical <em>Equipment</em></h2>
+        <p>State-of-the-art imaging and endoscopy technology enabling precise diagnosis and minimally invasive treatment.</p>
+      </div>
+
+      <div class="equipment-grid" id="equipment-grid">
+        <!-- Populated by main.js -->
+      </div>
+
+      <!-- Additional equipment note -->
+      <div style="margin-top:48px;background:#fff;border-radius:var(--radius);padding:32px;border:1px solid var(--clr-border);text-align:center">
+        <h3 style="font-family:var(--font-display);font-size:1.3rem;margin-bottom:12px">Additional Equipment &amp; Services</h3>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:16px">
+          <span style="background:var(--clr-bg-light);border:1px solid var(--clr-border);border-radius:999px;padding:8px 18px;font-size:.85rem;font-weight:600">🧲 3T MRI Scanner</span>
+          <span style="background:var(--clr-bg-light);border:1px solid var(--clr-border);border-radius:999px;padding:8px 18px;font-size:.85rem;font-weight:600">📡 PET-CT Scanner</span>
+          <span style="background:var(--clr-bg-light);border:1px solid var(--clr-border);border-radius:999px;padding:8px 18px;font-size:.85rem;font-weight:600">💗 Echocardiography</span>
+          <span style="background:var(--clr-bg-light);border:1px solid var(--clr-border);border-radius:999px;padding:8px 18px;font-size:.85rem;font-weight:600">🩺 Holter Monitor</span>
+          <span style="background:var(--clr-bg-light);border:1px solid var(--clr-border);border-radius:999px;padding:8px 18px;font-size:.85rem;font-weight:600">🏃 Treadmill Stress Test</span>
+          <span style="background:var(--clr-bg-light);border:1px solid var(--clr-border);border-radius:999px;padding:8px 18px;font-size:.85rem;font-weight:600">🦷 Dental OPG</span>
+          <span style="background:var(--clr-bg-light);border:1px solid var(--clr-border);border-radius:999px;padding:8px 18px;font-size:.85rem;font-weight:600">👁️ Retinal Imaging</span>
+          <span style="background:var(--clr-bg-light);border:1px solid var(--clr-border);border-radius:999px;padding:8px 18px;font-size:.85rem;font-weight:600">🧠 EEG / EMG</span>
+          <span style="background:var(--clr-bg-light);border:1px solid var(--clr-border);border-radius:999px;padding:8px 18px;font-size:.85rem;font-weight:600">💉 DEXA Bone Density</span>
+          <span style="background:var(--clr-bg-light);border:1px solid var(--clr-border);border-radius:999px;padding:8px 18px;font-size:.85rem;font-weight:600">🔬 Capsule Endoscopy</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-banner">
+    <div class="container cta-inner">
+      <div class="cta-text">
+        <h2>Book a Consultation or Diagnostic Test</h2>
+        <p>Our team will guide you to the right specialist and the right investigation.</p>
+      </div>
+      <a href="appointment.html" class="btn btn-white btn-lg">Book Appointment</a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo logo-light">
+          <span class="logo-icon">✚</span>
+          <span class="logo-text">Alliance<strong>Hospital</strong></span>
+        </a>
+        <p>Committed to excellence in healthcare. Serving our community with 40+ specialist doctors across 15+ departments.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Twitter">t</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Instagram">ig</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="departments.html">Departments</a></li>
+          <li><a href="facilities.html">Facilities</a></li>
+          <li><a href="doctors.html">Our Doctors</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="appointment.html">Book Appointment</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Departments</h4>
+        <ul>
+          <li><a href="departments.html#cardiology">Cardiology</a></li>
+          <li><a href="departments.html#neurology">Neurology</a></li>
+          <li><a href="departments.html#orthopedics">Orthopedics</a></li>
+          <li><a href="departments.html#pediatrics">Pediatrics</a></li>
+          <li><a href="departments.html#oncology">Oncology</a></li>
+          <li><a href="departments.html#emergency">Emergency</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p>📍 123 Health Avenue, Medical District<br/>Addis Ababa, Ethiopia</p>
+        <p>📞 <a href="tel:+251111234567">+251 111 234 567</a></p>
+        <p>✉️ <a href="mailto:info@alliancehospital.et">info@alliancehospital.et</a></p>
+        <p>🕐 Emergency: 24/7 · OPD: Mon–Sat 8am–6pm</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Alliance Hospital. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> · <a href="#">Terms of Use</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
