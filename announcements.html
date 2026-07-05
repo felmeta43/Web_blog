@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Announcements — Alliance Hospital</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-icon">✚</span><span class="logo-text">Alliance<strong>Hospital</strong></span></a>
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="departments.html">Departments</a></li>
+          <li><a href="facilities.html">Facilities</a></li>
+          <li><a href="doctors.html">Our Doctors</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="appointment.html" class="btn btn-primary nav-cta">Book Appointment</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <span class="section-eyebrow">Stay Informed</span>
+      <h1>Hospital Announcements</h1>
+      <p>Latest news, events, health alerts, and service updates from Alliance Hospital.</p>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section style="background:var(--clr-bg-alt);padding:32px 0;border-bottom:1px solid var(--clr-border)">
+    <div class="container">
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
+        <div style="flex:1;min-width:220px">
+          <input type="text" id="ann-search" placeholder="Search announcements…"
+            style="width:100%;padding:11px 16px;border:1.5px solid var(--clr-border);border-radius:8px;font-family:inherit;font-size:.95rem;background:var(--clr-bg);color:var(--clr-text);outline:none;transition:border-color .2s"
+            onfocus="this.style.borderColor='var(--clr-primary)'" onblur="this.style.borderColor='var(--clr-border)'" />
+        </div>
+        <div>
+          <select id="ann-filter-cat"
+            style="padding:11px 16px;border:1.5px solid var(--clr-border);border-radius:8px;font-family:inherit;font-size:.95rem;background:var(--clr-bg);color:var(--clr-text);cursor:pointer;outline:none">
+            <option value="all">All Categories</option>
+            <option value="General">General</option>
+            <option value="Event">Event</option>
+            <option value="Health Alert">Health Alert</option>
+            <option value="Service Update">Service Update</option>
+            <option value="Staff Notice">Staff Notice</option>
+            <option value="Community">Community</option>
+          </select>
+        </div>
+        <div style="margin-left:auto;color:var(--clr-text-muted);font-size:.9rem;white-space:nowrap">
+          <span id="ann-count">0</span> announcement(s)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Announcements list -->
+  <section class="section-pad">
+    <div class="container">
+      <div id="announcements-list" class="ann-grid">
+        <!-- populated by main.js -->
+      </div>
+      <div id="ann-empty" style="display:none;text-align:center;padding:60px 20px">
+        <div style="font-size:3rem;margin-bottom:16px">📋</div>
+        <h3 style="color:var(--clr-text-muted);font-weight:500">No announcements found</h3>
+        <p style="color:var(--clr-text-muted);margin-top:8px">Check back later or try a different filter.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo logo-light"><span class="logo-icon">✚</span><span class="logo-text">Alliance<strong>Hospital</strong></span></a>
+        <p>Committed to excellence in healthcare.</p>
+      </div>
+      <div class="footer-links"><h4>Quick Links</h4><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="departments.html">Departments</a></li>
+        <li><a href="facilities.html">Facilities</a></li>
+        <li><a href="doctors.html">Our Doctors</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="appointment.html">Book Appointment</a></li>
+      </ul></div>
+      <div class="footer-links"><h4>Departments</h4><ul>
+        <li><a href="departments.html#cardiology">Cardiology</a></li>
+        <li><a href="departments.html#neurology">Neurology</a></li>
+        <li><a href="departments.html#orthopedics">Orthopedics</a></li>
+        <li><a href="departments.html#pediatrics">Pediatrics</a></li>
+      </ul></div>
+      <div class="footer-contact"><h4>Contact Us</h4>
+        <p>📍 123 Health Avenue, Addis Ababa</p>
+        <p>📞 <a href="tel:+251111234567">+251 111 234 567</a></p>
+        <p>✉️ <a href="mailto:info@alliancehospital.et">info@alliancehospital.et</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2026 Alliance Hospital. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> · <a href="#">Terms of Use</a> · <a href="admin.html" style="color:var(--clr-text-muted)">Admin</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    (function () {
+      var searchEl = document.getElementById('ann-search');
+      var catEl    = document.getElementById('ann-filter-cat');
+
+      function renderPublicAnns() {
+        var q   = searchEl ? searchEl.value.toLowerCase() : '';
+        var cat = catEl ? catEl.value : 'all';
+
+        var anns = [];
+        try { anns = JSON.parse(localStorage.getItem('announcements') || '[]'); } catch (e) {}
+        anns = anns.filter(function (a) { return a.published; });
+        if (cat !== 'all') anns = anns.filter(function (a) { return a.category === cat; });
+        if (q) anns = anns.filter(function (a) {
+          return a.title.toLowerCase().includes(q) || a.content.toLowerCase().includes(q);
+        });
+        anns.sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
+
+        var countEl = document.getElementById('ann-count');
+        if (countEl) countEl.textContent = anns.length;
+
+        var listEl = document.getElementById('announcements-list');
+        var emptyEl = document.getElementById('ann-empty');
+
+        if (anns.length === 0) {
+          if (listEl) listEl.innerHTML = '';
+          if (emptyEl) emptyEl.style.display = 'block';
+          return;
+        }
+        if (emptyEl) emptyEl.style.display = 'none';
+        if (!listEl) return;
+
+        listEl.innerHTML = anns.map(function (a) {
+          var dateStr = new Date(a.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+          var urgBadge = a.urgent
+            ? '<span class="ann-urgent-badge">🚨 Urgent</span>'
+            : '';
+          return '<div class="ann-card' + (a.urgent ? ' ann-urgent' : '') + '">'
+            + '<div class="ann-card-header">'
+            + '<span class="ann-cat-badge">' + a.category + '</span>'
+            + urgBadge
+            + '<span class="ann-date">' + dateStr + '</span>'
+            + '</div>'
+            + '<h3 class="ann-title">' + escH(a.title) + '</h3>'
+            + '<p class="ann-body">' + escH(a.content) + '</p>'
+            + '</div>';
+        }).join('');
+      }
+
+      function escH(s) {
+        return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      }
+
+      if (searchEl) searchEl.addEventListener('input', renderPublicAnns);
+      if (catEl)    catEl.addEventListener('change', renderPublicAnns);
+
+      renderPublicAnns();
+    })();
+  </script>
+</body>
+</html>

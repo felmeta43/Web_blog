@@ -22,16 +22,25 @@ if (hamburger && mainNav) {
   });
 }
 
-// Shared doctor card builder (photo-style avatar)
+// Shared doctor card builder (photo-style avatar or uploaded photo)
 function doctorCardHTML(d) {
+  const photo    = localStorage.getItem(`doctor_photo_${d.id}`);
   const gradient = typeof deptGradient === 'function' ? deptGradient(d.dept) : 'linear-gradient(135deg,#0057a8,#003f7a)';
-  const initials  = typeof getInitials === 'function' ? getInitials(d.name) : d.name.slice(0,2).toUpperCase();
+  const initials  = typeof getInitials  === 'function' ? getInitials(d.name)  : d.name.slice(0,2).toUpperCase();
+
+  const photoArea = photo
+    ? `<div class="doctor-photo-area" style="background:#0a1020">
+         <img src="${photo}" alt="${d.name}" class="doctor-photo-img">
+         <span class="doctor-dept-tag">${d.dept}</span>
+       </div>`
+    : `<div class="doctor-photo-area" style="background:${gradient}">
+         <div class="doctor-initials">${initials}</div>
+         <span class="doctor-dept-tag">${d.dept}</span>
+       </div>`;
+
   return `
     <div class="doctor-card">
-      <div class="doctor-photo-area" style="background:${gradient}">
-        <div class="doctor-initials">${initials}</div>
-        <span class="doctor-dept-tag">${d.dept}</span>
-      </div>
+      ${photoArea}
       <div class="doctor-info">
         <h4>${d.name}</h4>
         <p class="specialty">${d.specialty}</p>
@@ -317,19 +326,39 @@ if (labStaffEl && typeof LAB_STAFF !== 'undefined') {
 // Medical equipment
 const equipmentGridEl = document.getElementById('equipment-grid');
 if (equipmentGridEl && typeof EQUIPMENT !== 'undefined') {
-  equipmentGridEl.innerHTML = EQUIPMENT.map(eq => `
-    <div class="equipment-card">
-      <div class="equipment-img" style="background:linear-gradient(135deg,${eq.color1},${eq.color2})">
-        <div class="equipment-pattern"></div>
+  equipmentGridEl.innerHTML = EQUIPMENT.map(eq => {
+    const uploadedImg = localStorage.getItem(`equip_img_${eq.id}`);
+    const hasSvg = typeof EQUIP_SVG !== 'undefined' && EQUIP_SVG[eq.id];
+
+    let imgArea;
+    if (uploadedImg) {
+      imgArea = `<div class="equipment-img" style="padding:0;overflow:hidden;background:#0a1020">
+        <img src="${uploadedImg}" alt="${eq.name}" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div class="equipment-stat-bubble" style="background:rgba(0,0,0,.65)">
+          <span class="stat-bubble-num">${eq.stat}</span>
+          <span class="stat-bubble-label">${eq.statLabel}</span>
+        </div>
+      </div>`;
+    } else if (hasSvg) {
+      imgArea = `<div class="equipment-img" style="padding:0;overflow:hidden;background:#e2ecf6;position:relative">
+        ${EQUIP_SVG[eq.id]}
         <div class="equipment-stat-bubble">
           <span class="stat-bubble-num">${eq.stat}</span>
           <span class="stat-bubble-label">${eq.statLabel}</span>
         </div>
-        <div class="equipment-icon-wrap">
-          <span class="equipment-icon">${eq.icon}</span>
-        </div>
+        <div class="equipment-tagline" style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.55);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 14px;border-radius:999px;white-space:nowrap">${eq.tagline}</div>
+      </div>`;
+    } else {
+      imgArea = `<div class="equipment-img" style="background:linear-gradient(135deg,${eq.color1},${eq.color2})">
+        <div class="equipment-pattern"></div>
+        <div class="equipment-stat-bubble"><span class="stat-bubble-num">${eq.stat}</span><span class="stat-bubble-label">${eq.statLabel}</span></div>
+        <div class="equipment-icon-wrap"><span class="equipment-icon">${eq.icon}</span></div>
         <div class="equipment-tagline">${eq.tagline}</div>
-      </div>
+      </div>`;
+    }
+
+    return `<div class="equipment-card">
+      ${imgArea}
       <div class="equipment-body">
         <h3>${eq.name}</h3>
         <p>${eq.description}</p>
@@ -341,6 +370,55 @@ if (equipmentGridEl && typeof EQUIPMENT !== 'undefined') {
           <ul>${eq.uses.map(u => `<li>${u}</li>`).join('')}</ul>
         </div>
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
+}
+
+// Public announcements page
+const announcementsListEl = document.getElementById('announcements-list');
+if (announcementsListEl) {
+  function renderPublicAnnouncements() {
+    const all = JSON.parse(localStorage.getItem('announcements') || '[]');
+    const published = all.filter(a => a.published).sort((a,b) => b.id - a.id);
+    const catFilter = document.getElementById('ann-cat-filter');
+    const q = document.getElementById('ann-search');
+
+    function draw(list) {
+      if (!list.length) {
+        announcementsListEl.innerHTML = `<div style="text-align:center;padding:64px 0;color:var(--clr-text-muted)"><div style="font-size:3rem;margin-bottom:16px">📭</div><h3>No announcements yet</h3><p>Check back soon for updates from Alliance Hospital.</p></div>`;
+        return;
+      }
+      announcementsListEl.innerHTML = list.map(a => {
+        const catColors = { 'News':'#0057a8','Event':'#00a878','Alert':'#e74c3c','Holiday':'#f39c12','Service Update':'#8e44ad' };
+        const bg = catColors[a.category] || '#0057a8';
+        return `<div class="ann-card ${a.urgent ? 'ann-urgent' : ''}">
+          <div class="ann-card-header">
+            <span class="ann-cat-badge" style="background:${bg}">${a.category}</span>
+            ${a.urgent ? '<span class="ann-urgent-badge">🔴 Urgent</span>' : ''}
+            <span class="ann-date">${a.date}</span>
+          </div>
+          <h3 class="ann-title">${a.title}</h3>
+          <p class="ann-body">${a.content.replace(/\n/g,'<br>')}</p>
+        </div>`;
+      }).join('');
+    }
+
+    function filter() {
+      const cat = catFilter ? catFilter.value : '';
+      const term = q ? q.value.toLowerCase() : '';
+      draw(published.filter(a => {
+        const matchCat  = !cat  || a.category === cat;
+        const matchTerm = !term || a.title.toLowerCase().includes(term) || a.content.toLowerCase().includes(term);
+        return matchCat && matchTerm;
+      }));
+    }
+
+    if (catFilter) catFilter.addEventListener('change', filter);
+    if (q) q.addEventListener('input', filter);
+    filter();
+
+    const countEl = document.getElementById('ann-count');
+    if (countEl) countEl.textContent = published.length;
+  }
+  renderPublicAnnouncements();
 }
