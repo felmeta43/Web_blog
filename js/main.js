@@ -22,6 +22,108 @@ if (hamburger && mainNav) {
   });
 }
 
+// ===== SITE-WIDE OVERRIDES FROM LOCALSTORAGE =====
+
+// Branding: logo icon/image, hospital name, footer tagline
+(function applyBranding() {
+  var p1  = localStorage.getItem('brand_name_p1');
+  var p2  = localStorage.getItem('brand_name_p2');
+  var icon = localStorage.getItem('brand_logo_icon');
+  var img  = localStorage.getItem('brand_logo_img');
+  var tagline = localStorage.getItem('brand_tagline');
+
+  document.querySelectorAll('.logo-icon').forEach(function(el) {
+    if (img) {
+      el.innerHTML = '<img src="'+img+'" style="height:28px;width:auto;display:block;vertical-align:middle">';
+    } else if (icon) {
+      el.textContent = icon;
+    }
+  });
+  if (p1 || p2) {
+    document.querySelectorAll('.logo-text').forEach(function(el) {
+      el.innerHTML = (p1 || 'Alliance') + '<strong>' + (p2 || 'Hospital') + '</strong>';
+    });
+  }
+  if (tagline) {
+    document.querySelectorAll('.footer-brand p').forEach(function(el) {
+      if (el.textContent.indexOf('excellence') !== -1 || el.textContent.indexOf('Committed') !== -1) {
+        el.textContent = tagline;
+      }
+    });
+  }
+})();
+
+// About page content overrides
+(function applyAboutOverrides() {
+  var fields = {
+    'about-mission-text': 'about_mission',
+    'about-vision-text':  'about_vision',
+    'about-values-text':  'about_values',
+    'about-accred-text':  'about_accred'
+  };
+  Object.keys(fields).forEach(function(id) {
+    var v = localStorage.getItem(fields[id]);
+    var el = document.getElementById(id);
+    if (el && v) el.textContent = v;
+  });
+  for (var i = 1; i <= 5; i++) {
+    var sv = localStorage.getItem('about_stat_'+i+'_val');
+    var sl = localStorage.getItem('about_stat_'+i+'_lbl');
+    var elv = document.getElementById('about-stat-'+i+'-val');
+    var ell = document.getElementById('about-stat-'+i+'-lbl');
+    if (elv && sv) elv.textContent = sv;
+    if (ell && sl) ell.textContent = sl;
+  }
+})();
+
+// Contact page content overrides
+(function applyContactOverrides() {
+  function setHtml(id, key) {
+    var el = document.getElementById(id);
+    var v  = localStorage.getItem(key);
+    if (!el || !v) return;
+    el.innerHTML = v.replace(/\n/g, '<br>');
+  }
+  function setPhoneLink(id, key) {
+    var el = document.getElementById(id);
+    var v  = localStorage.getItem(key);
+    if (!el || !v) return;
+    var num = v.replace(/\s+/g,'');
+    el.innerHTML = '<a href="tel:'+num+'" style="color:var(--clr-primary)">'+v+'</a>';
+  }
+  function setEmailLink(id, key) {
+    var el = document.getElementById(id);
+    var v  = localStorage.getItem(key);
+    if (!el || !v) return;
+    el.innerHTML = '<a href="mailto:'+v+'" style="color:var(--clr-primary)">'+v+'</a>';
+  }
+  setHtml('contact-address', 'contact_address');
+  setHtml('contact-hours',   'contact_hours');
+  setPhoneLink('contact-phone', 'contact_phone');
+  setEmailLink('contact-email', 'contact_email');
+  ['emergency','appointments','laboratory','billing'].forEach(function(k) {
+    var el = document.getElementById('contact-dept-'+k);
+    var v  = localStorage.getItem('contact_dept_'+k);
+    if (el && v) {
+      var lines = v.split('\n');
+      el.innerHTML = lines.map(function(l,i){ return i===0?l:'<strong>'+l+'</strong>'; }).join('<br>');
+    }
+  });
+})();
+
+// Blog: merge custom posts and remove hidden static posts
+function getAllPosts() {
+  var hidden = [];
+  try { hidden = JSON.parse(localStorage.getItem('hidden_blog_posts') || '[]'); } catch(e){}
+  var custom = [];
+  try { custom = JSON.parse(localStorage.getItem('custom_blog_posts') || '[]'); } catch(e){}
+  var staticPosts = (typeof BLOG_POSTS !== 'undefined' ? BLOG_POSTS : [])
+    .filter(function(p) { return hidden.indexOf(String(p.id)) === -1; });
+  return custom.concat(staticPosts);
+}
+
+// ===== END SITE-WIDE OVERRIDES =====
+
 // Shared doctor card builder (photo-style avatar or uploaded photo)
 function doctorCardHTML(d) {
   const photo    = localStorage.getItem(`doctor_photo_${d.id}`);
@@ -129,12 +231,12 @@ if (deptGridEl && typeof DEPARTMENTS !== 'undefined') {
 
 // Render featured blog posts (home — first 3)
 const featuredPostsEl = document.getElementById('featured-posts');
-if (featuredPostsEl && typeof BLOG_POSTS !== 'undefined') {
-  const featured = BLOG_POSTS.slice(0, 3);
+if (featuredPostsEl) {
+  const featured = getAllPosts().slice(0, 3);
   featuredPostsEl.innerHTML = featured.map(p => `
     <div class="blog-card">
-      <div class="blog-card-img">
-        ${p.icon}
+      <div class="blog-card-img" ${p.coverImg ? `style="background:#0a1020;padding:0;overflow:hidden"` : ''}>
+        ${p.coverImg ? `<img src="${p.coverImg}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;display:block">` : p.icon}
         <span class="blog-card-cat">${p.category}</span>
       </div>
       <div class="blog-card-body">
@@ -152,11 +254,12 @@ if (featuredPostsEl && typeof BLOG_POSTS !== 'undefined') {
 
 // Render all blog posts (blog page)
 const allPostsEl = document.getElementById('all-posts');
-if (allPostsEl && typeof BLOG_POSTS !== 'undefined') {
+if (allPostsEl) {
+  const ALL_POSTS = getAllPosts();
   function renderPosts(list) {
     allPostsEl.innerHTML = list.map(p => `
       <div class="blog-post-card">
-        <div class="blog-post-img">${p.icon}</div>
+        <div class="blog-post-img" ${p.coverImg ? 'style="padding:0;overflow:hidden;background:#0a1020"' : ''}>${p.coverImg ? `<img src="${p.coverImg}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;display:block">` : p.icon}</div>
         <div class="blog-post-body">
           <div class="blog-meta">
             <span class="section-eyebrow" style="font-size:.7rem;padding:3px 10px">${p.category}</span>
@@ -172,11 +275,11 @@ if (allPostsEl && typeof BLOG_POSTS !== 'undefined') {
     `).join('');
   }
 
-  renderPosts(BLOG_POSTS);
+  renderPosts(ALL_POSTS);
 
   const catFilter = document.getElementById('cat-filter');
   if (catFilter) {
-    const cats = [...new Set(BLOG_POSTS.map(p => p.category))].sort();
+    const cats = [...new Set(ALL_POSTS.map(p => p.category))].sort();
     cats.forEach(c => {
       const opt = document.createElement('option');
       opt.value = c; opt.textContent = c;
@@ -184,16 +287,16 @@ if (allPostsEl && typeof BLOG_POSTS !== 'undefined') {
     });
     catFilter.addEventListener('change', () => {
       const v = catFilter.value;
-      renderPosts(v ? BLOG_POSTS.filter(p => p.category === v) : BLOG_POSTS);
+      renderPosts(v ? ALL_POSTS.filter(p => p.category === v) : ALL_POSTS);
     });
   }
 }
 
 // Render blog sidebar categories
 const sidebarCatsEl = document.getElementById('sidebar-cats');
-if (sidebarCatsEl && typeof BLOG_POSTS !== 'undefined') {
+if (sidebarCatsEl) {
   const catCounts = {};
-  BLOG_POSTS.forEach(p => { catCounts[p.category] = (catCounts[p.category] || 0) + 1; });
+  getAllPosts().forEach(p => { catCounts[p.category] = (catCounts[p.category] || 0) + 1; });
   sidebarCatsEl.innerHTML = Object.entries(catCounts).sort().map(([cat, count]) => `
     <li><a href="#" style="color:var(--clr-text)">${cat}</a><span>${count}</span></li>
   `).join('');
@@ -202,10 +305,12 @@ if (sidebarCatsEl && typeof BLOG_POSTS !== 'undefined') {
 // Render blog post (blog-post.html)
 const postContentEl = document.getElementById('post-content');
 const postHeroEl = document.getElementById('post-hero');
-if (postContentEl && typeof BLOG_POSTS !== 'undefined') {
+if (postContentEl) {
+  const allPostsForDetail = getAllPosts();
   const params = new URLSearchParams(window.location.search);
-  const id = parseInt(params.get('id'));
-  const post = BLOG_POSTS.find(p => p.id === id) || BLOG_POSTS[0];
+  const rawId  = params.get('id');
+  const numId  = parseInt(rawId);
+  const post   = allPostsForDetail.find(p => String(p.id) === rawId || p.id === numId) || allPostsForDetail[0];
 
   document.title = `${post.title} — Alliance Hospital`;
 
@@ -233,7 +338,7 @@ if (postContentEl && typeof BLOG_POSTS !== 'undefined') {
   // Related posts
   const relatedEl = document.getElementById('related-posts');
   if (relatedEl) {
-    const related = BLOG_POSTS.filter(p => p.id !== post.id).slice(0, 3);
+    const related = allPostsForDetail.filter(p => p.id !== post.id).slice(0, 3);
     relatedEl.innerHTML = related.map(p => `
       <a href="blog-post.html?id=${p.id}" style="display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--clr-border);text-decoration:none">
         <span style="font-size:1.5rem">${p.icon}</span>

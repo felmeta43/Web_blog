@@ -358,6 +358,74 @@
     .toast.show { display: block; }
     @keyframes fadeSlideUp { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
 
+    /* SHARED UPLOAD BUTTON */
+    .adm-upload-btn {
+      display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px;
+      background: var(--primary); color: #fff; border-radius: 7px;
+      font-size: .82rem; font-weight: 600; cursor: pointer; transition: background .2s;
+    }
+    .adm-upload-btn:hover { background: var(--primary-dark); }
+
+    /* BRANDING TAB */
+    .brand-preview-bar {
+      background: var(--sidebar-bg); border-radius: var(--radius); padding: 18px 24px;
+      display: flex; align-items: center; gap: 14px; margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+    .brand-preview-icon {
+      width: 42px; height: 42px; background: var(--primary); border-radius: 10px;
+      display: grid; place-items: center; font-size: 1.2rem; font-weight: 900; color: #fff;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .brand-preview-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .brand-preview-name { font-size: 1.2rem; font-family: 'Playfair Display', serif; color: #fff; font-weight: 700; }
+    .brand-preview-name strong { color: rgba(255,255,255,.7); }
+
+    /* BLOG EDITOR */
+    .blog-list { display: flex; flex-direction: column; gap: 12px; }
+    .blog-item {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 16px 20px; display: flex; align-items: flex-start; gap: 14px; box-shadow: var(--shadow);
+    }
+    .blog-item.hidden-post { opacity: .5; border-style: dashed; }
+    .blog-item-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .blog-item-content { flex: 1; min-width: 0; }
+    .blog-item-title { font-weight: 700; font-size: .95rem; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .blog-item-meta { font-size: .78rem; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 0; }
+    .blog-static-badge { font-size: .65rem; background: #e2e8f0; color: var(--muted); padding: 2px 7px; border-radius: 999px; font-weight: 600; }
+    .blog-custom-badge { font-size: .65rem; background: #dcfce7; color: #15803d; padding: 2px 7px; border-radius: 999px; font-weight: 600; }
+    .blog-item-actions { display: flex; gap: 8px; flex-shrink: 0; align-items: flex-start; }
+
+    /* FORM PANEL (shared) */
+    .page-form-panel {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px 28px; margin-bottom: 24px; box-shadow: var(--shadow); max-width: 780px;
+    }
+    .page-form-panel h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .fg-full { grid-column: 1 / -1; }
+    .save-row { display: flex; gap: 10px; margin-top: 8px; align-items: center; }
+    .btn-primary-sm {
+      padding: 10px 22px; background: var(--primary); color: #fff; border: none;
+      border-radius: 7px; font-size: .875rem; font-weight: 600; cursor: pointer; transition: background .2s;
+    }
+    .btn-primary-sm:hover { background: var(--primary-dark); }
+    .btn-secondary-sm {
+      padding: 10px 18px; background: var(--bg); color: var(--muted); border: 1px solid var(--border);
+      border-radius: 7px; font-size: .875rem; font-weight: 600; cursor: pointer;
+    }
+    .hint-text { font-size: .78rem; color: var(--muted); margin-left: 8px; }
+
+    /* LOGO PREVIEW */
+    .logo-upload-wrap { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .logo-current {
+      width: 56px; height: 56px; border-radius: 10px; overflow: hidden;
+      background: var(--primary); display: grid; place-items: center;
+      font-size: 1.4rem; color: #fff; font-weight: 900; flex-shrink: 0;
+    }
+    .logo-current img { width: 100%; height: 100%; object-fit: contain; }
+
     @media (max-width: 768px) {
       .admin-sidebar { width: 60px; }
       .sidebar-link span:not(.icon) { display: none; }
@@ -366,6 +434,7 @@
       .admin-topbar { padding: 0 16px; }
       .admin-content { padding: 16px; }
       .admin-doctors-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+      .form-grid-2, .form-grid-3 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -424,6 +493,19 @@
       <div class="sidebar-link" data-tab="announcements">
         <span class="icon">📢</span><span>Announcements</span>
       </div>
+      <div class="sidebar-section-label">Pages</div>
+      <div class="sidebar-link" data-tab="branding">
+        <span class="icon">🎨</span><span>Branding</span>
+      </div>
+      <div class="sidebar-link" data-tab="about-editor">
+        <span class="icon">📄</span><span>About Page</span>
+      </div>
+      <div class="sidebar-link" data-tab="contact-editor">
+        <span class="icon">📞</span><span>Contact Info</span>
+      </div>
+      <div class="sidebar-link" data-tab="blog-editor">
+        <span class="icon">✏️</span><span>Blog Articles</span>
+      </div>
       <div class="sidebar-section-label">System</div>
       <div class="sidebar-link" data-tab="settings">
         <span class="icon">⚙️</span><span>Settings</span>
@@ -464,9 +546,13 @@
         <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;box-shadow:var(--shadow)">
           <h3 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:16px">Quick Actions</h3>
           <div style="display:flex;gap:12px;flex-wrap:wrap">
-            <button onclick="switchTab('doctors')" style="padding:10px 20px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-size:.875rem;font-weight:600;cursor:pointer">👨‍⚕️ Manage Doctor Photos</button>
-            <button onclick="switchTab('equipment')" style="padding:10px 20px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:.875rem;font-weight:600;cursor:pointer">🩻 Manage Equipment</button>
-            <button onclick="switchTab('announcements')" style="padding:10px 20px;background:#8e44ad;color:#fff;border:none;border-radius:8px;font-size:.875rem;font-weight:600;cursor:pointer">📢 Post Announcement</button>
+            <button onclick="switchTab('doctors')" style="padding:10px 20px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-size:.875rem;font-weight:600;cursor:pointer">👨‍⚕️ Doctor Photos</button>
+            <button onclick="switchTab('equipment')" style="padding:10px 20px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:.875rem;font-weight:600;cursor:pointer">🩻 Equipment</button>
+            <button onclick="switchTab('announcements')" style="padding:10px 20px;background:#8e44ad;color:#fff;border:none;border-radius:8px;font-size:.875rem;font-weight:600;cursor:pointer">📢 Announcements</button>
+            <button onclick="switchTab('branding')" style="padding:10px 20px;background:#e67e22;color:#fff;border:none;border-radius:8px;font-size:.875rem;font-weight:600;cursor:pointer">🎨 Branding</button>
+            <button onclick="switchTab('about-editor')" style="padding:10px 20px;background:#2980b9;color:#fff;border:none;border-radius:8px;font-size:.875rem;font-weight:600;cursor:pointer">📄 About Page</button>
+            <button onclick="switchTab('contact-editor')" style="padding:10px 20px;background:#16a085;color:#fff;border:none;border-radius:8px;font-size:.875rem;font-weight:600;cursor:pointer">📞 Contact Info</button>
+            <button onclick="switchTab('blog-editor')" style="padding:10px 20px;background:#c0392b;color:#fff;border:none;border-radius:8px;font-size:.875rem;font-weight:600;cursor:pointer">✏️ Blog Articles</button>
           </div>
         </div>
       </div>
@@ -564,8 +650,147 @@
             <button class="btn-danger-outline" onclick="clearDoctorPhotos()">Clear All Doctor Photos</button>
             <button class="btn-danger-outline" onclick="clearEquipImages()">Clear Equipment Images</button>
             <button class="btn-danger-outline" onclick="clearAnnouncements()">Clear All Announcements</button>
+            <button class="btn-danger-outline" onclick="clearCustomPosts()">Clear Custom Articles</button>
+            <button class="btn-danger-outline" onclick="resetBranding()">Reset Branding</button>
           </div>
         </div>
+      </div>
+
+      <!-- TAB: BRANDING -->
+      <div class="admin-tab" id="tab-branding">
+        <div class="section-toolbar"><h2>Branding</h2><a href="index.html" style="font-size:.82rem;color:var(--primary);font-weight:600">View Site →</a></div>
+        <div class="brand-preview-bar">
+          <div class="brand-preview-icon" id="brand-preview-icon">✚</div>
+          <div class="brand-preview-name"><span id="brand-preview-p1">Alliance</span><strong id="brand-preview-p2">Hospital</strong></div>
+        </div>
+        <div class="page-form-panel">
+          <h3>Hospital Name &amp; Logo</h3>
+          <div class="form-grid-2">
+            <div class="fg"><label>Name Part 1 (light)</label><input type="text" id="b-name-p1" placeholder="Alliance"></div>
+            <div class="fg"><label>Name Part 2 (bold)</label><input type="text" id="b-name-p2" placeholder="Hospital"></div>
+          </div>
+          <div class="fg"><label>Logo Icon (emoji or text, shown when no image)</label><input type="text" id="b-icon" placeholder="✚" maxlength="8"></div>
+          <div class="fg">
+            <label>Logo Image (upload to replace icon)</label>
+            <div class="logo-upload-wrap">
+              <div class="logo-current" id="b-logo-preview">✚</div>
+              <div>
+                <label class="adm-upload-btn" style="display:inline-block">
+                  Upload Logo Image
+                  <input type="file" accept="image/*" style="display:none" onchange="uploadLogoImg(this)">
+                </label>
+                <button class="btn-secondary-sm" style="margin-left:8px" onclick="removeLogoImg()">Remove</button>
+              </div>
+            </div>
+          </div>
+          <div class="fg"><label>Footer Tagline</label><input type="text" id="b-tagline" placeholder="Committed to excellence in healthcare."></div>
+          <div class="save-row">
+            <button class="btn-primary-sm" onclick="saveBranding()">Save Branding</button>
+            <span class="hint-text">Changes apply site-wide on next page load.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: ABOUT PAGE EDITOR -->
+      <div class="admin-tab" id="tab-about-editor">
+        <div class="section-toolbar"><h2>About Page</h2><a href="about.html" style="font-size:.82rem;color:var(--primary);font-weight:600">View Page →</a></div>
+        <div class="page-form-panel">
+          <h3>Mission, Vision &amp; Values</h3>
+          <div class="fg"><label>Our Mission</label><textarea id="ab-mission" rows="3" placeholder="Mission statement…"></textarea></div>
+          <div class="fg"><label>Our Vision</label><textarea id="ab-vision" rows="3" placeholder="Vision statement…"></textarea></div>
+          <div class="fg"><label>Our Values</label><textarea id="ab-values" rows="3" placeholder="Core values…"></textarea></div>
+          <div class="fg"><label>Accreditation</label><textarea id="ab-accred" rows="3" placeholder="Accreditation details…"></textarea></div>
+          <div class="save-row"><button class="btn-primary-sm" onclick="saveAboutMVV()">Save</button></div>
+        </div>
+        <div class="page-form-panel">
+          <h3>Statistics Banner (5 figures)</h3>
+          <div class="form-grid-3">
+            <div class="fg"><label>Stat 1 Value</label><input type="text" id="ab-s1v" placeholder="40+"></div>
+            <div class="fg"><label>Stat 1 Label</label><input type="text" id="ab-s1l" placeholder="Specialist Doctors"></div>
+            <div></div>
+            <div class="fg"><label>Stat 2 Value</label><input type="text" id="ab-s2v" placeholder="15+"></div>
+            <div class="fg"><label>Stat 2 Label</label><input type="text" id="ab-s2l" placeholder="Departments"></div>
+            <div></div>
+            <div class="fg"><label>Stat 3 Value</label><input type="text" id="ab-s3v" placeholder="50k+"></div>
+            <div class="fg"><label>Stat 3 Label</label><input type="text" id="ab-s3l" placeholder="Patients Served"></div>
+            <div></div>
+            <div class="fg"><label>Stat 4 Value</label><input type="text" id="ab-s4v" placeholder="20+"></div>
+            <div class="fg"><label>Stat 4 Label</label><input type="text" id="ab-s4l" placeholder="Years of Service"></div>
+            <div></div>
+            <div class="fg"><label>Stat 5 Value</label><input type="text" id="ab-s5v" placeholder="24/7"></div>
+            <div class="fg"><label>Stat 5 Label</label><input type="text" id="ab-s5l" placeholder="Emergency Care"></div>
+          </div>
+          <div class="save-row"><button class="btn-primary-sm" onclick="saveAboutStats()">Save Stats</button></div>
+        </div>
+      </div>
+
+      <!-- TAB: CONTACT EDITOR -->
+      <div class="admin-tab" id="tab-contact-editor">
+        <div class="section-toolbar"><h2>Contact Info</h2><a href="contact.html" style="font-size:.82rem;color:var(--primary);font-weight:600">View Page →</a></div>
+        <div class="page-form-panel">
+          <h3>Location &amp; General Contact</h3>
+          <div class="fg"><label>Address (use line breaks for multi-line)</label><textarea id="ct-address" rows="3" placeholder="123 Health Avenue&#10;Medical District&#10;Addis Ababa, Ethiopia"></textarea></div>
+          <div class="form-grid-2">
+            <div class="fg"><label>Main Phone</label><input type="text" id="ct-phone" placeholder="+251 111 234 567"></div>
+            <div class="fg"><label>Email Address</label><input type="email" id="ct-email" placeholder="info@alliancehospital.et"></div>
+          </div>
+          <div class="fg"><label>Opening Hours (use line breaks)</label><textarea id="ct-hours" rows="3" placeholder="Emergency: 24/7&#10;OPD: Mon–Sat&#10;8:00 AM – 6:00 PM"></textarea></div>
+          <div class="save-row"><button class="btn-primary-sm" onclick="saveContactGeneral()">Save</button></div>
+        </div>
+        <div class="page-form-panel">
+          <h3>Department Direct Lines</h3>
+          <div class="form-grid-2">
+            <div class="fg"><label>Emergency Line</label><input type="text" id="ct-d-emergency" placeholder="+251 111 234 567"></div>
+            <div class="fg"><label>Appointments Line</label><input type="text" id="ct-d-appointments" placeholder="+251 111 234 568"></div>
+            <div class="fg"><label>Laboratory Line</label><input type="text" id="ct-d-laboratory" placeholder="+251 111 234 569"></div>
+            <div class="fg"><label>Billing Line</label><input type="text" id="ct-d-billing" placeholder="+251 111 234 570"></div>
+          </div>
+          <div class="save-row"><button class="btn-primary-sm" onclick="saveContactDepts()">Save</button></div>
+        </div>
+      </div>
+
+      <!-- TAB: BLOG ARTICLES -->
+      <div class="admin-tab" id="tab-blog-editor">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px">
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.3rem;flex:1">Blog Articles</h2>
+          <a href="blog.html" style="font-size:.82rem;color:var(--primary);font-weight:600">View Blog →</a>
+          <button class="btn-primary-sm" id="new-blog-btn">＋ New Article</button>
+        </div>
+
+        <!-- Article form -->
+        <div class="page-form-panel hidden" id="blog-form-panel">
+          <h3 id="blog-form-title">New Article</h3>
+          <div class="form-grid-2">
+            <div class="fg fg-full"><label>Title *</label><input type="text" id="bl-title" placeholder="Article title…" maxlength="120"></div>
+            <div class="fg"><label>Category</label><input type="text" id="bl-category" placeholder="e.g. Cardiology"></div>
+            <div class="fg"><label>Author</label><input type="text" id="bl-author" placeholder="e.g. Dr. Abebe Girma"></div>
+            <div class="fg"><label>Date</label><input type="text" id="bl-date" placeholder="e.g. July 6, 2026"></div>
+            <div class="fg"><label>Read Time</label><input type="text" id="bl-readtime" placeholder="e.g. 5 min read"></div>
+            <div class="fg"><label>Icon (emoji)</label><input type="text" id="bl-icon" placeholder="🏥" maxlength="4"></div>
+          </div>
+          <div class="fg"><label>Excerpt (short summary)</label><textarea id="bl-excerpt" rows="3" placeholder="Brief summary shown on blog listing…"></textarea></div>
+          <div class="fg"><label>Full Content *</label><textarea id="bl-content" rows="10" placeholder="Write the full article content here. You can use simple HTML tags like &lt;h2&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;li&gt;, &lt;strong&gt;…"></textarea></div>
+          <div class="fg fg-full">
+            <label>Cover Image (optional)</label>
+            <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+              <div id="bl-img-preview" style="width:80px;height:56px;background:var(--border);border-radius:6px;overflow:hidden;display:grid;place-items:center;font-size:1.5rem">🖼️</div>
+              <label class="adm-upload-btn">Upload Cover<input type="file" accept="image/*" style="display:none" onchange="uploadBlogCover(this)"></label>
+              <button class="btn-secondary-sm" onclick="removeBlogCover()">Remove</button>
+            </div>
+          </div>
+          <div class="save-row">
+            <button class="btn-primary-sm" id="bl-save-btn" onclick="saveBlogPost()">Save Article</button>
+            <button class="btn-secondary-sm" id="bl-cancel-btn" onclick="cancelBlogEdit()">Cancel</button>
+          </div>
+        </div>
+
+        <!-- Static posts toggle notice -->
+        <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:var(--radius);padding:12px 18px;margin-bottom:18px;font-size:.85rem;color:#92400e">
+          💡 Built-in articles from <code>data.js</code> are shown with a gray badge. You can hide them from the public blog using the toggle button.
+        </div>
+
+        <!-- Articles list -->
+        <div class="blog-list" id="admin-blog-list"></div>
       </div>
 
     </div><!-- end admin-content -->
